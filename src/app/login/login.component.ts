@@ -17,4 +17,7 @@ export class LoginComponent {
     this.afAuth.signInWithRedirect(provider);
   }
 
+  logout() {
+
+  }
 }
