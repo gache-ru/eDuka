@@ -44,7 +44,7 @@ import { AuthService } from './services/auth.service';
     AngularFireDatabaseModule,
     NgbModule
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
