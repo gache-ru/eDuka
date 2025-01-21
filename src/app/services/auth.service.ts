@@ -25,7 +25,7 @@ export class AuthService {
     localStorage.setItem('returnUrl', returnUrl);
     
     const provider = new GoogleAuthProvider();
-    this.afAuth.signInWithRedirect(provider);
+    this.afAuth.signInWithPopup(provider);
   };
 
   logout() {
