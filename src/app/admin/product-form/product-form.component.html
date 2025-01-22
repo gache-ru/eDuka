@@ -8,16 +8,18 @@
     <div class="input-group mb-3">
       <span class="input-group-text">$</span>
       <input id="title" type="number" class="form-control" />
-
     </div>
   </div>
   <div class="form-group">
     <label for="category">Category</label>
     <select id="category" class="form-control">
-      <option value=""></option>
+      <option value="">Select a category</option>
+      <option *ngFor="let c of categories$ | async" [value]="c.key">
+        {{ c.name }}
+      </option>
     </select>
-    <input />
   </div>
+
   <div class="form-group">
     <label for="imageUrl">Image Url</label>
     <input id="imageUrl" type="text" class="form-control" />

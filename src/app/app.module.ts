@@ -22,6 +22,7 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    NgbModule
+    NgbModule,
+    FormsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]
