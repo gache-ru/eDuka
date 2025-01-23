@@ -37,7 +37,7 @@ import { FormsModule } from '@angular/forms';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,9 +46,9 @@ import { FormsModule } from '@angular/forms';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     NgbModule,
-    FormsModule  
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

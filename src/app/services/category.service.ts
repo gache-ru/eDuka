@@ -38,7 +38,7 @@ export class CategoryService {
   private categoriesRef: AngularFireList<Category>;
 
   constructor(private db: AngularFireDatabase) {
-    this.categoriesRef = this.db.list('/categories');
+    this.categoriesRef = this.db.list('/categories', ref => ref.orderByChild('name'));
   }
 
   getCategories(): Observable<CategoryWithKey[]> {
