@@ -20,9 +20,8 @@ import { MyOrdersComponent } from './layout/my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './services/auth.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,7 @@ import { FormsModule } from '@angular/forms';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,9 +45,10 @@ import { FormsModule } from '@angular/forms';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     NgbModule,
-    FormsModule  
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

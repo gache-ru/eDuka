@@ -1,28 +1,120 @@
-<form>
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input id="title" type="text" class="form-control" />
-  </div>
-  <div class="form-group">
-    <label for="price">Price</label>
-    <div class="input-group mb-3">
-      <span class="input-group-text">$</span>
-      <input id="title" type="number" class="form-control" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="category">Category</label>
-    <select id="category" class="form-control">
-      <option value="">Select a category</option>
-      <option *ngFor="let c of categories$ | async" [value]="c.key">
-        {{ c.name }}
-      </option>
-    </select>
+<div class="row">
+  <div class="col-md-6">
+    <form [formGroup]="productForm" (ngSubmit)="save(productForm.value)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          formControlName="title"
+          type="text"
+          class="form-control"
+          id="title"
+          required
+        />
+        <div
+          *ngIf="
+            productForm.get('title')?.touched &&
+            productForm.get('title')?.errors
+          "
+        >
+          <div *ngIf="productForm.get('title')?.errors?.['required']">
+            Title is Required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">kes</span>
+          <input
+            formControlName="price"
+            type="number"
+            class="form-control"
+            min="100"
+            required
+          />
+        </div>
+        <div
+          *ngIf="
+            productForm.get('price')?.touched &&
+            productForm.get('price')?.errors
+          "
+        >
+          <div *ngIf="productForm.get('price')?.errors?.['required']">
+            Price is Required.
+          </div>
+          <div *ngIf="productForm.get('price')?.errors?.['min']">
+            Price must be at least 100.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select formControlName="category" class="form-control" required>
+          <option value="">Select Category</option>
+          <option *ngFor="let c of categories$ | async" [value]="c.key">
+            {{ c.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            productForm.get('category')?.touched &&
+            productForm.get('category')?.errors
+          "
+        >
+          <div *ngIf="productForm.get('category')?.errors?.['required']">
+            Category is Required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="imageUrl">Image Url</label>
+        <input
+          formControlName="imageUrl"
+          type="text"
+          class="form-control"
+          required
+          [pattern]="imgUrlPattern"
+        />
+        <div
+          *ngIf="
+            productForm.get('imageUrl')?.touched &&
+            productForm.get('imageUrl')?.errors
+          "
+        >
+          <div *ngIf="productForm.get('imageUrl')?.errors?.['required']">
+            Image URL is Required.
+          </div>
+          <div *ngIf="productForm.get('imageUrl')?.errors?.['pattern']">
+            Please enter a valid URL.
+          </div>
+        </div>
+      </div>
+
+      <button [disabled]="productForm.invalid" class="btn btn-primary">
+        Save
+      </button>
+      <button type="button" class="btn btn-danger" (click)="deleteProduct()">Delete</button>
+    </form>
   </div>
 
-  <div class="form-group">
-    <label for="imageUrl">Image Url</label>
-    <input id="imageUrl" type="text" class="form-control" />
+  <div class="col-md-6">
+    <div class="card" style="width: 18rem">
+      <img
+        [src]="productForm.get('imageUrl')?.value"
+        class="card-img-top"
+        *ngIf="productForm.get('imageUrl')?.value"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ productForm.get("title")?.value }}</h5>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ productForm.get("price")?.value | currency : 'KES ' }}
+        </h5>
+      </div>
+    </div>
   </div>
-  <button class="btn btn-primary">Save</button>
-</form>
+</div>

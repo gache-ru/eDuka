@@ -18,60 +18,76 @@ const routes: Routes = [
   //Anonymous users;
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'products',
-    component: ProductsComponent
+    component: ProductsComponent,
   },
   {
     path: 'shopping-cart',
-    component: ShoppingCartComponent
+    component: ShoppingCartComponent,
   },
 
   //Logged in users;
   {
     path: 'check-out',
     component: CheckOutComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'order-success',
     component: OrderSuccessComponent,
-    canActivate: [AuthGuard]
-
+    canActivate: [AuthGuard],
   },
   {
     path: 'my/orders',
     component: MyOrdersComponent,
-    canActivate: [AuthGuard]
-
+    canActivate: [AuthGuard],
   },
 
-  //Admins  
+  //Admins
+
+  // {
+  //   path: 'admin/product/new',
+  //   component: ProductFormComponent,
+  //   canActivate: [AuthGuard, AdminAuthGuard]
+  // },
+  // {
+  //   path: 'admin/product/:id',
+  //   component: ProductFormComponent,
+  //   canActivate: [AuthGuard, AdminAuthGuard]
+  // },
+  // {
+  //   path: 'admin/products',
+  //   component: AdminProductsComponent,
+  //   canActivate: [AuthGuard, AdminAuthGuard]
+  // },
+  // {
+  //   path: 'admin/orders',
+  //   component: AdminOrdersComponent,
+  //   canActivate: [AuthGuard, AdminAuthGuard]
+  // }
+
   {
-    path: 'admin/products',
-    component: AdminProductsComponent,
-    canActivate: [AuthGuard, AdminAuthGuard]
+    path: 'admin',
+    canActivate: [AuthGuard, AdminAuthGuard],
+    children: [
+      { path: 'products', component: AdminProductsComponent },
+      { path: 'product/new', component: ProductFormComponent },
+      { path: 'product/:id', component: ProductFormComponent },
+      { path: 'orders', component: AdminOrdersComponent },
+    ],
   },
-  {
-    path: 'admin/product/new',
-    component: ProductFormComponent,
-    canActivate: [AuthGuard, AdminAuthGuard]
-  },
-  {
-    path: 'admin/orders',
-    component: AdminOrdersComponent,
-    canActivate: [AuthGuard, AdminAuthGuard]
-  }
+  { path: '**', redirectTo: '' }, // wildcard route
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
