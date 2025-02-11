@@ -1,6 +1,7 @@
 # EShop
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.3.
+Don't re-invent the wheel, Just re-align It
 
 ## Development server
 
