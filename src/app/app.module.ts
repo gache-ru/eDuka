@@ -1,6 +1,7 @@
 import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,7 @@ import { OrderSuccessComponent } from './layout/order-success/order-success.comp
 import { MyOrdersComponent } from './layout/my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { AdminResourceManagementComponent } from './admin/admin-resource-management/admin-resource-management.component';
 import { LoginComponent } from './login/login.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,11 +37,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
+    AdminResourceManagementComponent,
     LoginComponent,
     ProductFormComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

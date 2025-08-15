@@ -1,39 +1,89 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/">eDuka</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+<nav class="navbar navbar-expand-lg modern-navbar">
+    <div class="container">
+        <a class="navbar-brand brand-logo" routerLink="/">
+            <span class="brand-text">eDuka</span>
+            <span class="brand-tagline">Shop Smart</span>
+        </a>
+        
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/shopping-cart">Shopping Cart</a>
+                    <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        Home
+                    </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/products" routerLinkActive="active">
+                        Products
+                    </a>
+                </li>
+            </ul>
+            
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link cart-link" routerLink="/shopping-cart" routerLinkActive="active">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-text">Cart</span>
+                        <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+                    </a>
+                </li>
+                
                 <ng-template #anonymousUser>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/login">Login</a>
+                        <a class="nav-link login-btn" routerLink="/login">
+                            Login
+                        </a>
                     </li>
                 </ng-template>
 
-                <li ngbDropdown class="nav-item dropdown" *ngIf="appUser; else anonymousUser">
-                    <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{appUser.name}}
+                <li ngbDropdown class="nav-item dropdown user-dropdown" *ngIf="appUser; else anonymousUser">
+                    <a ngbDropdownToggle class="nav-link dropdown-toggle user-menu" role="button" 
+                       aria-expanded="false" id="userDropdown">
+                        <span class="user-avatar">👤</span>
+                        <span class="user-name">{{ appUser.name }}</span>
                     </a>
-                    <ul ngbDropdownMenu class="dropdown-menu">
-                        <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
+                    <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end modern-dropdown" aria-labelledby="userDropdown">
+                        <li>
+                            <h6 class="dropdown-header">
+                                <span class="user-greeting">Hello, {{ appUser.name }}!</span>
+                            </h6>
+                        </li>
+                        <li><a class="dropdown-item" routerLink="/my/orders">
+                            <span class="dropdown-icon">📋</span>
+                            My Orders
+                        </a></li>
 
                         <ng-container *ngIf="appUser.isAdmin">
-                            <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
-                            <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <h6 class="dropdown-header admin-header">Admin Panel</h6>
+                            </li>
+                            <li><a class="dropdown-item admin-item" routerLink="/admin/orders">
+                                <span class="dropdown-icon">📊</span>
+                                Manage Orders
+                            </a></li>
+                            <li><a class="dropdown-item admin-item" routerLink="/admin/products">
+                                <span class="dropdown-icon">📦</span>
+                                Manage Products
+                            </a></li>
+                            <li><a class="dropdown-item admin-item" routerLink="/admin/resources">
+                                <span class="dropdown-icon">⚙️</span>
+                                Resource Management
+                            </a></li>
                         </ng-container>
                        
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" (click)="logout()">Log Out</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item logout-item" (click)="logout()">
+                            <span class="dropdown-icon">🚪</span>
+                            Log Out
+                        </a></li>
                     </ul>
                 </li>
             </ul>

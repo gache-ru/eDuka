@@ -8,6 +8,7 @@ import { CheckOutComponent } from './layout/check-out/check-out.component';
 import { OrderSuccessComponent } from './layout/order-success/order-success.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { AdminResourceManagementComponent } from './admin/admin-resource-management/admin-resource-management.component';
 import { LoginComponent } from './login/login.component';
 import { MyOrdersComponent } from './layout/my-orders/my-orders.component';
 import { AuthGuard } from './guards/auth-guard.service';
@@ -81,6 +82,7 @@ const routes: Routes = [
       { path: 'product/new', component: ProductFormComponent },
       { path: 'product/:id', component: ProductFormComponent },
       { path: 'orders', component: AdminOrdersComponent },
+      { path: 'resources', component: AdminResourceManagementComponent },
     ],
   },
   { path: '**', redirectTo: '' }, // wildcard route
